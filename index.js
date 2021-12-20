@@ -9,4 +9,4 @@ app.use(express.json())
 app.use("/auth",authRoutes);
 
 
-app.listen(3000, () =>console.log( `🚀 Server ready at http://localhost:${port}`));
+app.listen(port, () =>console.log( `🚀 Server ready at http://localhost:${port}`));
