@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const { TokenExpiredError } = jwt;
 
-const generateToken = (user) => {
-    const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: "1h" });
+const generateToken = (payload) => {
+    const token = jwt.sign( payload , process.env.JWT_SECRET, { expiresIn: "3h" });
     const response = {
         token : token,
         generatedAt: new Date(),

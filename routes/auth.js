@@ -3,17 +3,23 @@ const jwtService = require('../services/jwtService');
 
 
 router.post('/verifyToken',jwtService.verifyToken, (req, res) => {
+    
     const response = {
         user: req.verified.user,
-        generatedAt: new Date(req.verified.iat),
-        expiresIn: new Date(req.verified.exp)
+        id : req.verified.id,
+        generatedAt: new Date(req.verified.iat*1000),
+        expiresIn: new Date(req.verified.exp*1000)
     }
     res.json(response);
 });
 
 router.post('/generateToken', (req, res) => {
-    const user = req.body.user;
-    const token = jwtService.generateToken(user);
+    const payload = {
+        user: req.body.user,
+        id: req.body.id
+    }
+
+    const token = jwtService.generateToken(payload);
     res.json(token);
 });
 
